@@ -24,11 +24,7 @@ module Suppliers
     end
 
     def fetch_cheapest_hotels
-      suppliers.map do |supplier|
-        uri = URI.parse(supplier.url)
-        response = Net::HTTP.get_response(uri)
-        JSON.parse(response.body).min_by { |hotel| hotel[1] } + [supplier.name]
-      end
+      suppliers.map { |supplier| supplier.find_cheapest_hotel }
     end
 
     def suppliers
