@@ -24,7 +24,7 @@ module Suppliers
     end
 
     def fetch_cheapest_hotels
-      suppliers.map { |supplier| supplier.find_cheapest_hotel }
+      suppliers.map(&:find_cheapest_hotel)
     end
 
     def suppliers
