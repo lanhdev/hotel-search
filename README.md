@@ -2,19 +2,19 @@
 
 ## ANALYSIS
 
-API server calls other application's API in order to get some data, in this problem is hotels. The call is made often, the data in response may be huge, and in reality it is not good for any application to wait for such a long time to get the response
+- API server calls other application's API in order to get some data, in this problem is hotels. The call is made often, the data in response may be huge, and in reality it is not good for any application to wait for such a long time to get the response.
 
-In case of the response is not going to change often in the external application. We can cache the response in memory store such as Redis with an expiration time so instead of the actual call, users could get the response from the Redis cache.
+- In case of the response is not going to change often in the external application. We can cache the response in memory store such as Redis with an expiration time so instead of the actual call, users could get the response from the Redis cache.
 
-From the requirement, the expiration time of the data is 5 minutes. When the data expires, the call goes to the external server and refresh the data in cache. Therefore, next time the data will be returned from the cache
+- From the requirement, the expiration time of the data is 5 minutes. When the data expires, the call goes to the external server and refresh the data in cache. Therefore, next time the data will be returned from the cache.
 
-In conclusion, when users search for cheapest hotels, the API server needs to fetch the results either from the cache or directly from the suppliers
+- In conclusion, when users search for cheapest hotels, the API server needs to fetch the results either from the cache or directly from the suppliers
 
 ![Diagram](https://i.imgur.com/bAMUtjz.png)
 
 ## DESIGN
 
-[1] The system is designed with:
+[1] The code is designed with:
 - `Supplier` model represents for an provider of the hotels. It stores supplier name and URL to example data.
 - `SearchController` is API controller for endpoint `api/v1/suppliers/search`
 - `Suppliers::SearchService` service is used to fetch data either from cache or from external application.
