@@ -16,7 +16,7 @@ RSpec.describe Supplier do
     end
 
     it 'returns cheapest hotel' do
-      expect(subject).to eq ["mnop", 250, supplier.name.to_s]
+      is_expected.to eq ["mnop", 250, supplier.name.to_s]
     end
   end
 end
