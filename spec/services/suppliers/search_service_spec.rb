@@ -19,7 +19,7 @@ RSpec.describe Suppliers::SearchService do
 
   describe '#call' do
     context 'suppliers parameter is empty' do
-      let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
+      let(:memory_store) { ActiveSupport::Cache.lookup_store(:redis_cache_store) }
       let(:cache) { Rails.cache }
       let(:suppliers) { '' }
       let(:response) do
@@ -51,7 +51,7 @@ RSpec.describe Suppliers::SearchService do
     end
 
     context 'suppliers parameter is supplier1' do
-      let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
+      let(:memory_store) { ActiveSupport::Cache.lookup_store(:redis_cache_store) }
       let(:cache) { Rails.cache }
       let(:suppliers) { 'supplier1' }
       let(:response) do
@@ -79,7 +79,7 @@ RSpec.describe Suppliers::SearchService do
     end
 
     context 'suppliers parameter is supplier1,supplier3' do
-      let(:memory_store) { ActiveSupport::Cache.lookup_store(:memory_store) }
+      let(:memory_store) { ActiveSupport::Cache.lookup_store(:redis_cache_store) }
       let(:cache) { Rails.cache }
       let(:suppliers) { 'supplier1,supplier3' }
       let(:response) do
