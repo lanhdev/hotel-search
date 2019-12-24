@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Supplier < ApplicationRecord
   def find_cheapest_hotel
     uri = URI.parse(url)
